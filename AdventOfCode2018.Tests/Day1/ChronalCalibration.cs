@@ -9,5 +9,25 @@ namespace AdventOfCode2018.Tests.Day1
 		{
 			return data.Sum();
 		}
+
+		public int CalibratePart2(List<int> frequencies)
+		{
+			var seenFrequency = new HashSet<int>();
+			var total = 0;
+			seenFrequency.Add(total);
+			while (true)
+			{
+				foreach (var frequency in frequencies)
+				{
+					total += frequency;
+					if (seenFrequency.Contains(total))
+					{
+						return total;
+					}
+
+					seenFrequency.Add(total);
+				}
+			}
+		}
 	}
 }

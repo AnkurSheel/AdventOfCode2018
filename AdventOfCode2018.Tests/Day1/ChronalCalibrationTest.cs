@@ -13,10 +13,18 @@ namespace AdventOfCode2018.Tests.Day1
 		}
 
 		[Theory]
-		[JsonFileData("Day1/testData.json")]
+		[JsonFileData("Day1/testData.json", "Part1")]
 		public void CalibrateReturnsCorrectFrequency(List<int> data, int expectedResult)
 		{
 			var result = _calibration.CalibratePart1(data);
+			Assert.Equal(expectedResult, result);
+		}
+
+		[Theory]
+		[JsonFileData("Day1/testData.json", "Part2")]
+		public void CalibrateReturnsCorrectFrequencyItReachesTwice(List<int> data, int expectedResult)
+		{
+			var result = _calibration.CalibratePart2(data);
 			Assert.Equal(expectedResult, result);
 		}
 	}
