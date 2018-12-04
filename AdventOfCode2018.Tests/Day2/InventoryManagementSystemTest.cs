@@ -14,9 +14,17 @@ namespace AdventOfCode2018.Tests.Day2
 
 		[Theory]
 		[JsonFileData("Day2/testData.json", "Part1", typeof(string), typeof(int))]
-		public void CalculateChecksumReturnsCorrectChecksum(List<string> data, int expectedResult)
+		public void CalculateChecksumReturnsCorrectChecksum(List<string> boxIds, int expectedResult)
 		{
-			var result = _inventoryManagementSystem.CalculateChecksum(data);
+			var result = _inventoryManagementSystem.CalculateChecksum(boxIds);
+			Assert.Equal(expectedResult, result);
+		}
+
+		[Theory]
+		[JsonFileData("Day2/testData.json", "Part2", typeof(string), typeof(string))]
+		public void CalculateCommonIdDifferingByOneCharReturnsCorrectString(List<string> boxIds, string expectedResult)
+		{
+			var result = _inventoryManagementSystem.CalculateCommonIdDifferingByOneChar(boxIds);
 			Assert.Equal(expectedResult, result);
 		}
 	}
