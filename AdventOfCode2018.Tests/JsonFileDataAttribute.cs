@@ -10,26 +10,26 @@ using Xunit.Sdk;
 
 namespace AdventOfCode2018.Tests
 {
-	class TestObject
-	{
-		public List<int> Data { get; set; }
-		public int Result { get; set; }
-	}
-
 	public class JsonFileDataAttribute : DataAttribute
 	{
 		private readonly string _filePath;
 		private readonly string _propertyName;
+		private readonly Type _dataType;
+		private readonly Type _resultType;
 
-		public JsonFileDataAttribute(string filePath)
+		public JsonFileDataAttribute(string filePath, Type dataType, Type resultType)
 		{
 			_filePath = filePath;
+			_dataType = dataType;
+			_resultType = resultType;
 		}
 
-		public JsonFileDataAttribute(string filePath, string propertyName)
+		public JsonFileDataAttribute(string filePath, string propertyName, Type dataType, Type resultType)
 		{
 			_filePath = filePath;
 			_propertyName = propertyName;
+			_dataType = dataType;
+			_resultType = resultType;
 		}
 
 		public override IEnumerable<object[]> GetData(MethodInfo testMethod)
@@ -64,7 +64,10 @@ namespace AdventOfCode2018.Tests
 
 		private IEnumerable<object[]> GetData(string jsonData)
 		{
-			var datalist = JsonConvert.DeserializeObject<List<TestObject>>(jsonData);
+			var specific = typeof(TestObject<,>).MakeGenericType(_dataType, _resultType);
+			var generic = typeof(List<>).MakeGenericType(specific);
+
+			dynamic datalist = JsonConvert.DeserializeObject(jsonData, generic);
 			var objectList = new List<object[]>();
 			foreach (var data in datalist)
 			{

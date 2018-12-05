@@ -13,7 +13,7 @@ namespace AdventOfCode2018.Tests.Day1
 		}
 
 		[Theory]
-		[JsonFileData("Day1/testData.json", "Part1")]
+		[JsonFileData("Day1/testData.json", "Part1", typeof(int), typeof(int))]
 		public void CalibrateReturnsCorrectFrequency(List<int> data, int expectedResult)
 		{
 			var result = _calibration.CalibratePart1(data);
@@ -21,7 +21,7 @@ namespace AdventOfCode2018.Tests.Day1
 		}
 
 		[Theory]
-		[JsonFileData("Day1/testData.json", "Part2")]
+		[JsonFileData("Day1/testData.json", "Part2", typeof(int), typeof(int))]
 		public void CalibrateReturnsCorrectFrequencyItReachesTwice(List<int> data, int expectedResult)
 		{
 			var result = _calibration.CalibratePart2(data);
