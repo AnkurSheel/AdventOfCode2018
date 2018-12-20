@@ -20,5 +20,13 @@ namespace AdventOfCode2018.Tests.Day3
             var result = _noMatterHowYouSliceIt.GetTotalOverlappingCoordinatesCount(claims);
             Assert.Equal(expectedResult, result);
         }
+
+        [Theory]
+        [JsonFileData("Day3/testData.json", "Part2", typeof(string), typeof(int))]
+        public void GetNonOverlappingClaimReturnsCorrectClaim(List<string> claims, int expectedResult)
+        {
+            var result = _noMatterHowYouSliceIt.GetNonOverlappingClaim(claims);
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

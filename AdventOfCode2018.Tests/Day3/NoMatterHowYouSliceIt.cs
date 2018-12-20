@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventOfCode2018.Tests.Day3
 {
@@ -8,6 +9,34 @@ namespace AdventOfCode2018.Tests.Day3
         private List<Claim> _claims;
 
         private HashSet<Coordinate> _overlappingCoordinates;
+
+        public int GetNonOverlappingClaim(List<string> rawClaims)
+        {
+            _claims = new List<Claim>(rawClaims.Count);
+
+            var claims = new HashSet<int>();
+
+            foreach (var rawClaim in rawClaims)
+            {
+                var newClaim = ParseClaim(rawClaim);
+                var overlaps = false;
+                foreach (var claim1 in _claims)
+                {
+                    if (claim1.IsOverlap(newClaim))
+                    {
+                        claims.Remove(claim1.Id);
+                        overlaps = true;
+                    }
+                }
+
+                if (!overlaps)
+                {
+                    claims.Add(newClaim.Id);
+                }
+                _claims.Add(newClaim);
+            }
+            return claims.FirstOrDefault();
+        }
 
         public int GetTotalOverlappingCoordinatesCount(List<string> rawClaims)
         {
@@ -31,16 +60,16 @@ namespace AdventOfCode2018.Tests.Day3
             {
                 if (newClaim.IsOverlap(claim))
                 {
-                var topLeft = new Coordinate();
-                var bottomRight = new Coordinate();
+                    var topLeft = new Coordinate();
+                    var bottomRight = new Coordinate();
 
-                SetXCoordinates(newClaim, claim, bottomRight, topLeft);
+                    SetXCoordinates(newClaim, claim, bottomRight, topLeft);
 
-                SetYCoordinates(newClaim, claim, bottomRight, topLeft);
+                    SetYCoordinates(newClaim, claim, bottomRight, topLeft);
 
-                SetOverlappingCoordinates(topLeft, bottomRight);
+                    SetOverlappingCoordinates(topLeft, bottomRight);
+                }
             }
-        }
         }
 
         private Claim ParseClaim(string rawClaim)
