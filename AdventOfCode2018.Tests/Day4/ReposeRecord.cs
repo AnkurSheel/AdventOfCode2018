@@ -14,6 +14,71 @@ namespace AdventOfCode2018.Tests.Day4
 
         private SortedDictionary<DateTime, Record> _records;
 
+        public int GetMostAsleepAtSameMinuteGuardIdMultipliedByTheMinute(List<string> rawRecords)
+        {
+            _records = new SortedDictionary<DateTime, Record>();
+
+            var sortedRecords = new SortedDictionary<DateTime, string>();
+
+            foreach (var rawRecord in rawRecords)
+            {
+                var tokens = rawRecord.Split(new[] { '[', ']' }, StringSplitOptions.RemoveEmptyEntries);
+                var dateTime = DateTime.ParseExact(tokens[0], "yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture);
+                sortedRecords.Add(dateTime, rawRecord);
+            }
+
+            foreach (var (recordTimestamp, sortedRecord) in sortedRecords)
+            {
+                ParseRawRecords(recordTimestamp, sortedRecord);
+            }
+
+            var guards = new Dictionary<int, Record>();
+            foreach (var (_, record) in _records)
+            {
+                var guardId = record.GuardId;
+                Record guard;
+                if (!guards.ContainsKey(guardId))
+                {
+                    guard = new Record(record);
+                    guards.Add(guardId, guard);
+                }
+                else
+                {
+                    guard = guards[guardId];
+                    foreach (var sleepMinute in record.SleepMinutes)
+                    {
+                        var sleepMinuteKey = sleepMinute.Key;
+                        if (guard.SleepMinutes.ContainsKey(sleepMinuteKey))
+                        {
+                            guard.SleepMinutes[sleepMinuteKey]++;
+                        }
+                        else
+                        {
+                            guard.SleepMinutes.Add(sleepMinuteKey, 1);
+                        }
+                    }
+                }
+            }
+
+            var bestGuardId = 0;
+            var mostAsleepMinute = 0;
+            var timesAsleepAtMostAsleepMinute = 0;
+            foreach (var (_, guard) in guards)
+            {
+                foreach (var (minute, count) in guard.SleepMinutes)
+                {
+                    if (timesAsleepAtMostAsleepMinute < count)
+                    {
+                        bestGuardId = guard.GuardId;
+                        mostAsleepMinute = minute;
+                        timesAsleepAtMostAsleepMinute = count;
+                    }
+                }
+            }
+
+            return bestGuardId * mostAsleepMinute;
+        }
+
         public int GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMost(List<string> rawRecords)
         {
             _records = new SortedDictionary<DateTime, Record>();
