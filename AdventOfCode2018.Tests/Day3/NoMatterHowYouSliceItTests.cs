@@ -14,7 +14,7 @@ namespace AdventOfCode2018.Tests.Day3
         }
 
         [Theory]
-        [JsonFileData("Day3/testData.json", "Part1", typeof(string), typeof(int))]
+        [JsonFileData("Day3/testData.json", "Part1", typeof(List<string>), typeof(int))]
         public void GetTotalOverlappingCoordinatesCountReturnsCorrectCount(List<string> claims, int expectedResult)
         {
             var result = _noMatterHowYouSliceIt.GetTotalOverlappingCoordinatesCount(claims);
@@ -22,7 +22,7 @@ namespace AdventOfCode2018.Tests.Day3
         }
 
         [Theory]
-        [JsonFileData("Day3/testData.json", "Part2", typeof(string), typeof(int))]
+        [JsonFileData("Day3/testData.json", "Part2", typeof(List<string>), typeof(int))]
         public void GetNonOverlappingClaimReturnsCorrectClaim(List<string> claims, int expectedResult)
         {
             var result = _noMatterHowYouSliceIt.GetNonOverlappingClaim(claims);

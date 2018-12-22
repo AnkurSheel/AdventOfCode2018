@@ -14,7 +14,7 @@ namespace AdventOfCode2018.Tests.Day4
         }
 
         [Theory]
-        [JsonFileData("Day4/testData.json", "Part1", typeof(string), typeof(int))]
+        [JsonFileData("Day4/testData.json", "Part1", typeof(List<string>), typeof(int))]
         public void GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMostReturnsCorrectResult(List<string> records, int expectedResult)
         {
             var result = _reposeRecord.GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMost(records);
@@ -22,7 +22,7 @@ namespace AdventOfCode2018.Tests.Day4
         }
 
         [Theory]
-        [JsonFileData("Day4/testData.json", "Part2", typeof(string), typeof(int))]
+        [JsonFileData("Day4/testData.json", "Part2", typeof(List<string>), typeof(int))]
         public void GetMostAsleepAtSameMinuteGuardIdMultipliedByTheMinuteReturnsCorrectResult(List<string> records, int expectedResult)
         {
             var result = _reposeRecord.GetMostAsleepAtSameMinuteGuardIdMultipliedByTheMinute(records);
