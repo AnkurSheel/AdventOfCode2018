@@ -18,5 +18,14 @@ namespace AdventOfCode2018.Tests.Day5
             var result = _alchemicalReduction.GetRemainingUnits(polymer);
             Assert.Equal(expectedResult, result);
         }
+
+        [Theory]
+        [JsonFileData("Day5/testData.json", "Part2", typeof(string), typeof(int))]
+        public void GetRemainingUnitsAfterImprovingPolymerReturnsCorrectNumberOfUnits(string polymer, int expectedResult)
+        {
+            var result = _alchemicalReduction.GetRemainingUnitsAfterImprovingPolymer(polymer);
+            Assert.Equal(expectedResult, result);
+
+        }
     }
 }
