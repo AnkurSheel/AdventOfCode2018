@@ -15,7 +15,8 @@ namespace AdventOfCode2018.Tests.Day4
 
         [Theory]
         [JsonFileData("Day4/testData.json", "Part1", typeof(List<string>), typeof(int))]
-        public void GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMostReturnsCorrectResult(List<string> records, int expectedResult)
+        public void GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMostReturnsCorrectResult(List<string> records,
+                                                                                                                 int expectedResult)
         {
             var result = _reposeRecord.GetMostMinutesAsleepGuardIdMultipliedByTheMinuteTheGuardSpendsAsleepMost(records);
             Assert.Equal(expectedResult, result);

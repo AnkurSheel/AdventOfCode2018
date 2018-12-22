@@ -18,10 +18,9 @@
         public bool IsOverlap(Claim otherClaim)
         {
             return !(otherClaim.BottomRight.X < TopLeft.X
-                   || otherClaim.BottomRight.Y < TopLeft.Y
-                   || BottomRight.X < otherClaim.TopLeft.X
-                   || BottomRight.Y < otherClaim.TopLeft.Y);
+                     || otherClaim.BottomRight.Y < TopLeft.Y
+                     || BottomRight.X < otherClaim.TopLeft.X
+                     || BottomRight.Y < otherClaim.TopLeft.Y);
         }
-
     }
 }

@@ -33,8 +33,10 @@ namespace AdventOfCode2018.Tests.Day3
                 {
                     claims.Add(newClaim.Id);
                 }
+
                 _claims.Add(newClaim);
             }
+
             return claims.FirstOrDefault();
         }
 

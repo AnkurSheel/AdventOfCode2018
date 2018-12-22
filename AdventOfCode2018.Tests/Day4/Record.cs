@@ -18,7 +18,6 @@ namespace AdventOfCode2018.Tests.Day4
             WakeTime = recordValue.WakeTime;
         }
 
-
         public int GuardId { get; set; }
 
         public int TotalSleepTime { get; set; }
