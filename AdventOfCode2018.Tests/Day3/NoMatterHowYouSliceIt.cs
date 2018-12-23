@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AdventOfCode2018.Tests.Helpers;
+
 namespace AdventOfCode2018.Tests.Day3
 {
     public class NoMatterHowYouSliceIt
