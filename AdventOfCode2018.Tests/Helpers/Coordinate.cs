@@ -1,5 +1,8 @@
-﻿namespace AdventOfCode2018.Tests.Day3
+﻿using System.Diagnostics;
+
+namespace AdventOfCode2018.Tests.Helpers
 {
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
     public class Coordinate
     {
         public Coordinate()
@@ -15,6 +18,8 @@
         public int X { get; set; }
 
         public int Y { get; set; }
+
+        private string DebuggerDisplay => $"X: {X}, Y: {Y}";
 
         public override bool Equals(object obj)
         {

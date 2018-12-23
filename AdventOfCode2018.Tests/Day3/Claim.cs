@@ -1,4 +1,6 @@
-﻿namespace AdventOfCode2018.Tests.Day3
+﻿using AdventOfCode2018.Tests.Helpers;
+
+namespace AdventOfCode2018.Tests.Day3
 {
     public class Claim
     {
