@@ -26,5 +26,13 @@ namespace AdventOfCode2018.Tests.Day6
             var result = _chronalCoordinates.GetSizeOfLargestAreaThatIsntInfinite(coordinates);
             Assert.Equal(expectedResult, result);
         }
+
+        [Theory]
+        [JsonFileData("Day6/testData.json", "Part2", typeof(List<string>), typeof(int))]
+        public void GetSizeOfLargestAreaNearAsManyCoordinatesAsPossibleReturnsCorrectSize(List<string> coordinates, int expectedResult)
+        {
+            var result = _chronalCoordinates.GetSizeOfLargestAreaNearAsManyCoordinatesAsPossible(coordinates);
+            Assert.Equal(expectedResult, result);
+        }
     }
 }

@@ -24,6 +24,46 @@ namespace AdventOfCode2018.Tests.Day6
             return nearestPoints.First().Value;
         }
 
+        public int GetSizeOfLargestAreaNearAsManyCoordinatesAsPossible(List<string> rawCoordinates)
+        {
+            var maxSum = int.Parse(rawCoordinates.First());
+            rawCoordinates.RemoveAt(0);
+
+            Array.Resize(ref _coordinates, rawCoordinates.Count);
+            ParseRawCoordinates(rawCoordinates);
+            var bottomRight = GetBottomRightCoordinate();
+
+            var regionSize = 0;
+            for (var i = 0; i < bottomRight.X; i++)
+            {
+                for (var j = 0; j < bottomRight.Y; j++)
+                {
+                    long sum = 0;
+                    var invalid = false;
+                    foreach (var coordinate in _coordinates)
+                    {
+                        var diffX = Math.Abs(coordinate.X - i);
+                        var diffY = Math.Abs(coordinate.Y - j);
+
+                        long distance = diffX + diffY;
+                        sum += distance;
+                        if (sum >= maxSum)
+                        {
+                            invalid = true;
+                            break;
+                        }
+                    }
+
+                    if (!invalid)
+                    {
+                        regionSize++;
+                    }
+                }
+            }
+
+            return regionSize;
+        }
+
         private Dictionary<Coordinate, int> GetEnclosedNearestPoints(Coordinate bottomRight, ClosestCoordinate[,] distances)
         {
             var nearestPoints = _coordinates.ToDictionary(coordinate => coordinate, coordinate => 0);
